@@ -54,6 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
     AwesomeNotifications().setListeners(
       onActionReceivedMethod: NotificationController.onActionReceivedMethod,
     );
+    AuthApi.getUsersList(context);
     _processInitialUri();
     _listenForUri();
   }
@@ -63,7 +64,6 @@ class _HomeScreenState extends State<HomeScreen> {
     //Initialize the ap
     Provider.of<SSEProvider>(context, listen: false).listenToSSE(context);
     ClientApi.getClientSettings(context);
-    AuthApi.getUsersList(context);
     NotificationApi.getNotifications(context: context);
     super.didChangeDependencies();
   }

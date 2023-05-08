@@ -84,8 +84,9 @@ class AuthApi {
       print(rawBody);
       response = await dio
           .post(url, data: rawBody, queryParameters: {"cookie": false});
-      print(response);
       if (response.statusCode == 200) {
+        print(response);
+        AuthApi.getUsersList(context);
       } else {}
     } catch (e) {
       print('--ERROR--');

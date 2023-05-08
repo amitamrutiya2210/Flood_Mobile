@@ -49,7 +49,10 @@ class UsersListTile extends StatelessWidget {
                         horizontal: 6.0,
                         vertical: 4.0,
                       ),
-                      child: Text('Current User'),
+                      child: Text(
+                        'Current User',
+                        style: TextStyle(color: Colors.white),
+                      ),
                     ),
                   )
                 : Center(
