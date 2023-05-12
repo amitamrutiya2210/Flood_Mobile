@@ -201,6 +201,7 @@ class EventHandlerApi {
     var maptrackerURIs = {};
     var mapStatus = {};
     List<String> statusList = [];
+    List<String> sizeList = [];
     torrentLength = torrentList.length.toString();
     filterProvider.trackerURIsListMain = [];
     try {
@@ -208,6 +209,7 @@ class EventHandlerApi {
         for (int j = 0; j < torrentList[i].trackerURIs.length; j++) {
           filterProvider.trackerURIsListMain
               .add(torrentList[i].trackerURIs[j].toString());
+
           filterProvider
               .settrackerURIsListMain(filterProvider.trackerURIsListMain);
         }
@@ -233,7 +235,20 @@ class EventHandlerApi {
           statusList.add(torrentList[i].status[j].toString());
         }
       }
-      filterProvider.setstatusList(statusList);
+      Provider.of<FilterProvider>(context, listen: false)
+          .setstatusList(statusList);
+    } catch (e) {
+      print(e);
+    }
+
+    // add the size of the torrent
+    try {
+      for (int i = 0; i < torrentList.length; i++) {
+        for (int j = 0; j < torrentList[i].trackerURIs.length; j++) {
+          sizeList.add(torrentList[i].sizeBytes.toString());
+        }
+      }
+      Provider.of<FilterProvider>(context, listen: false).setsizeList(sizeList);
     } catch (e) {
       print(e);
     }
