@@ -247,7 +247,9 @@ class EventHandlerApi {
     // add the size of the torrent
     try {
       for (int i = 0; i < torrentList.length; i++) {
-        sizeList.add(torrentList[i].sizeBytes.toString());
+        for (int j = 0; j < torrentList[i].trackerURIs.length; j++) {
+          sizeList.add(torrentList[i].sizeBytes.toString());
+        }
       }
       Provider.of<FilterProvider>(context, listen: false).setsizeList(sizeList);
     } catch (e) {

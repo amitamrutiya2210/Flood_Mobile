@@ -705,31 +705,41 @@ class _FilterByStatusState extends State<FilterByStatus> {
                             ),
                           ],
                         ),
-                        trailing: Radio<String>(
-                          value: filterModel.maptrackerURIs.keys
-                              .toList()[index]
-                              .toString(),
-                          groupValue: filterModel.trackerURISelected,
-                          onChanged: (value) {
-                            Provider.of<FilterProvider>(context, listen: false)
-                                .setFilterSelected(null);
-                            Provider.of<FilterProvider>(context, listen: false)
-                                .settrackerURISelected(value.toString());
-                          },
-                          activeColor: Colors.blue,
-                        ),
-                        subtitle: Text(
-                          humanReadableByteCountSI(filterModel.sizeList[index]),
-                          style: TextStyle(
-                              color: filterModel.maptrackerURIs.keys
-                                          .toList()[index] ==
-                                      filterModel.trackerURISelected.toString()
-                                  ? Colors.blue
-                                  : ThemeProvider
-                                      .theme.textTheme.bodyText1?.color,
-                              fontFamily: 'Montserrat',
-                              fontSize: 16,
-                              fontWeight: FontWeight.normal),
+                        trailing: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              humanReadableByteCountSI(
+                                  filterModel.sizeList[index]),
+                              style: TextStyle(
+                                color: filterModel.maptrackerURIs.keys
+                                            .toList()[index] ==
+                                        filterModel.trackerURISelected
+                                            .toString()
+                                    ? Colors.blue
+                                    : ThemeProvider
+                                        .theme.textTheme.bodyText1?.color,
+                                fontFamily: 'Montserrat',
+                                fontSize: 13,
+                                fontWeight: FontWeight.normal,
+                              ),
+                            ),
+                            Radio<String>(
+                              value: filterModel.maptrackerURIs.keys
+                                  .toList()[index]
+                                  .toString(),
+                              groupValue: filterModel.trackerURISelected,
+                              onChanged: (value) {
+                                Provider.of<FilterProvider>(context,
+                                        listen: false)
+                                    .setFilterSelected(null);
+                                Provider.of<FilterProvider>(context,
+                                        listen: false)
+                                    .settrackerURISelected(value.toString());
+                              },
+                              activeColor: Colors.blue,
+                            ),
+                          ],
                         ),
                       );
                     }),
